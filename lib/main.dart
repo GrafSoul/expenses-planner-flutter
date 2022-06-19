@@ -12,9 +12,39 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Expenses Planner',
-      home: MyHomePage(),
+      theme: ThemeData(
+        fontFamily: 'OpenSans',
+        appBarTheme: AppBarTheme(
+          toolbarTextStyle: ThemeData.light().textTheme.copyWith(
+            headline1: const TextStyle(
+              fontFamily: 'OpenSans',
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            )
+          ).headline2
+        ),
+        textTheme: const TextTheme(
+            headline3: TextStyle(
+              color: Colors.teal,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+            bodyText1: TextStyle(
+              color: Colors.black87,
+              fontFamily: 'Quicksand',
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+            bodyText2: TextStyle(
+              color: Colors.black45,
+              fontSize: 14,
+            )),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.teal)
+            .copyWith(secondary: Colors.black87),
+      ),
+      home: const MyHomePage(),
     );
   }
 }

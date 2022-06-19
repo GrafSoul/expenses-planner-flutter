@@ -26,32 +26,26 @@ class TransactionList extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border.all(
                       width: 2,
-                      color: const Color.fromRGBO(0, 75, 162, 1),
+                      // color: const Color.fromRGBO(0, 75, 162, 1),
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                   child: Text(
                     '\$${transactions[index].amount.toStringAsFixed(2)}',
-                    style: const TextStyle(
-                      color: Color.fromRGBO(0, 75, 162, 1),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+                    style: Theme.of(context).textTheme.headline3,
                   ),
                 ),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(transactions[index].title,
-                          style: const TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          )),
-                      Text(DateFormat.yMMMd().format(transactions[index].date),
-                          style: const TextStyle(
-                            color: Colors.black45,
-                            fontSize: 14,
-                          )),
+                      Text(
+                        transactions[index].title,
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                      Text(
+                        DateFormat.yMMMd().format(transactions[index].date),
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
                     ]),
               ],
             ),
