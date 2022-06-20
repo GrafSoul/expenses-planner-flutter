@@ -5,11 +5,8 @@ class ChartBar extends StatelessWidget {
   final double spendingAmount;
   final double spendingPctOfTotal;
 
-  const ChartBar(
-      {Key? key,
-      required this.label,
-      required this.spendingAmount,
-      required this.spendingPctOfTotal})
+  const ChartBar(this.label, this.spendingAmount, this.spendingPctOfTotal,
+      {Key? key})
       : super(key: key);
 
   @override
@@ -19,7 +16,7 @@ class ChartBar extends StatelessWidget {
         Text('\$${spendingAmount.toStringAsFixed(0)}'),
         const SizedBox(height: 4),
         SizedBox(
-          width: 60,
+          width: 8,
           height: 40,
           child: Stack(
             children: <Widget>[
