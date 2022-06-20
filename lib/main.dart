@@ -15,19 +15,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Expenses Planner',
-
       theme: ThemeData(
         fontFamily: 'OpenSans',
         primaryColor: Colors.teal,
         appBarTheme: AppBarTheme(
-          toolbarTextStyle: ThemeData.light().textTheme.copyWith(
-            headline1: const TextStyle(
-              fontFamily: 'OpenSans',
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            )
-          ).headline2
-        ),
+            toolbarTextStyle: ThemeData.light()
+                .textTheme
+                .copyWith(
+                    headline1: const TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ))
+                .headline2),
         textTheme: const TextTheme(
             headline3: TextStyle(
               color: Colors.teal,
@@ -75,6 +75,16 @@ class _MyHomePageState extends State<MyHomePage> {
     // ),
   ];
 
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((tx) {
+      return tx.date.isAfter(
+        DateTime.now().subtract(
+          const Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
+
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
       title: txTitle,
@@ -115,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: SingleChildScrollView(
         child: Column(children: [
-          Chart(_userTransactions),
+          Chart(_recentTransactions),
           const SizedBox(
             width: double.infinity,
             child: Card(
