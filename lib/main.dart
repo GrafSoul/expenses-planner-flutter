@@ -72,11 +72,15 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransaction(String txTitle, double txAmount) {
+  void _addNewTransaction(
+    String txTitle,
+    double txAmount,
+    DateTime chosenDate,
+  ) {
     final newTx = Transaction(
       title: txTitle,
       amount: txAmount,
-      date: DateTime.now(),
+      date: chosenDate,
       id: DateTime.now().toString(),
     );
 
@@ -113,14 +117,6 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(children: [
           Chart(_recentTransactions),
-          const SizedBox(
-            width: double.infinity,
-            child: Card(
-              elevation: 5,
-              child: Text('CHART!'),
-            ),
-          ),
-          // ignore: unnecessary_const
           TransactionList(_userTransactions),
         ]),
       ),
