@@ -15,15 +15,19 @@ class TransactionList extends StatelessWidget {
       child: transactions.isEmpty
           ? Column(
               children: <Widget>[
-                const SizedBox(height: 15,),
+                const SizedBox(
+                  height: 15,
+                ),
                 Text(
                   'No transactions added yet!',
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
-               const SizedBox(height: 15,),
-               SizedBox(
-                  height: 200,                 
-                  child:Image.asset(
+                const SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  height: 200,
+                  child: Image.asset(
                     'assets/images/waiting.png',
                     fit: BoxFit.cover,
                   ),
@@ -33,40 +37,32 @@ class TransactionList extends StatelessWidget {
           : ListView.builder(
               itemBuilder: (ctx, index) {
                 return Card(
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        margin: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 10,
-                        ),
+                  elevation: 5,
+                  margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.teal,
+                      radius: 30,
+                      child: Padding(
                         padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 2,
-                            // color: const Color.fromRGBO(0, 75, 162, 1),
-                            color: Theme.of(context).primaryColor,
+                        child: FittedBox(
+                          child: Text(
+                            '\$${transactions[index].amount.toStringAsFixed(2)}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                        child: Text(
-                          '\$${transactions[index].amount.toStringAsFixed(2)}',
-                          style: Theme.of(context).textTheme.headline3,
-                        ),
                       ),
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              transactions[index].title,
-                              style: Theme.of(context).textTheme.bodyText1,
-                            ),
-                            Text(
-                              DateFormat.yMMMd()
-                                  .format(transactions[index].date),
-                              style: Theme.of(context).textTheme.bodyText2,
-                            ),
-                          ]),
-                    ],
+                    ),
+                    title: Text(
+                      transactions[index].title,
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                    subtitle: Text(
+                      DateFormat.yMMMd().format(transactions[index].date),
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
                   ),
                 );
               },
