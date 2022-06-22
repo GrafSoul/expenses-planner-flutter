@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'OpenSans',
         primaryColor: Colors.teal,
+        errorColor: Colors.red[900],
         appBarTheme: AppBarTheme(
             toolbarTextStyle: ThemeData.light()
                 .textTheme
@@ -102,6 +103,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  void _deleteTransactions(String id) {
+    setState(() {
+      _userTransactions.removeWhere((tx) => tx.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(children: [
           Chart(_recentTransactions),
-          TransactionList(_userTransactions),
+          TransactionList(_userTransactions, _deleteTransactions),
         ]),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
