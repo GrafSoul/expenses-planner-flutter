@@ -49,7 +49,6 @@ class Chart extends StatelessWidget {
         padding: const EdgeInsets.all(5),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          
           children: groupedTransactionViews.map((data) {
             return Flexible(
               flex: 2,
@@ -62,7 +61,7 @@ class Chart extends StatelessWidget {
                     : (data['amount'] as double) / totalSpending,
               ),
             );
-          }).toList(),       
+          }).toList(),
         ),
       ),
     );
